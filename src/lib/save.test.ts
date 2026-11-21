@@ -52,8 +52,7 @@ describe("sauvegarde", () => {
     const st = new MemoryStorage();
     st.setItem(SAVE_KEY, JSON.stringify({ ...vie, version: 0 }));
     expect(loadLife(st)).toBeNull();
-    const { gauges: _g, ...sansJauges } = vie;
-    st.setItem(SAVE_KEY, JSON.stringify(sansJauges));
+    st.setItem(SAVE_KEY, JSON.stringify({ ...vie, gauges: undefined }));
     expect(loadLife(st)).toBeNull();
     st.setItem(SAVE_KEY, JSON.stringify({ ...vie, phase: "pause" }));
     expect(loadLife(st)).toBeNull();
