@@ -1,0 +1,71 @@
+:root {
+  --bg: #141a38;
+  --card: #1f2750;
+  --text: #f6f1e9;
+  --muted: #aeb5d9;
+  --border: #3a4680;
+  --accent: #ff5c8a;
+  --sun: #ffc93c;
+  --on-accent: #141a38;
+  --event-card: #fff6e8;
+  --event-text: #1b2245;
+}
+
+.theme-marseille {
+  --bg: #eaf6fc;
+  --card: #ffffff;
+  --text: #0b2e45;
+  --muted: #4a6478;
+  --border: #cfe7f3;
+  --accent: #1679b5;
+  --sun: #ffc93c;
+  --on-accent: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-texte), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-titre), system-ui, sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--sun);
+  outline-offset: 2px;
+}
+
+.screen {
+  min-height: 100dvh;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--bg);
+  color: var(--text);
+}
