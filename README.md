@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# La Débrouille
 
-## Getting Started
+Simulateur de vie humoristique, Paris contre Marseille. Pars de rien à 18 ans, deviens une légende.
 
-First, run the development server:
+- Fiche du jeu : `docs/superpowers/specs/2026-11-21-la-debrouille-design.md`
+- Plans de construction : `docs/superpowers/plans/`
+- Maquette des écrans : https://claude.ai/artifact/VtY4SfTiFbxKZY2coTWsbN
+
+## Lancer le jeu en local
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Puis ouvrir http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tests
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm test        # moteur du jeu (Vitest)
+npm run e2e     # parcours complets dans le navigateur (Playwright)
+npm run build   # vérifie la compilation
+```
 
-## Learn More
+Astuce : `/creer?seed=ma-graine` crée toujours la même vie (pratique pour tester).
 
-To learn more about Next.js, take a look at the following resources:
+## Organisation du code
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `src/engine/` : moteur du jeu, sans interface (hasard reproductible, jauges, actions, événements, fin d'année, grades, score).
+- `src/content/` : le contenu (actions, quartiers, cartes événement). Ajouter une carte = ajouter un objet dans `src/content/events/`.
+- `src/components/` et `src/app/` : les écrans (accueil, création, année, événement, carte de vie).
+- `src/lib/save.ts` : sauvegarde de la vie dans le téléphone.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## En ligne
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Le projet Vercel `la-debrouille` est relié à ce dépôt : chaque push crée une version en ligne.
