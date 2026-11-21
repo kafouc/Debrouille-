@@ -46,11 +46,13 @@ describe("Rng", () => {
 
   test("weightedPick ignore les poids nuls et vaut 1 par défaut", () => {
     const r = new Rng("poids");
+    const lourds: { id: string; weight?: number }[] = [{ id: "a", weight: 0 }, { id: "b", weight: 1 }];
     for (let i = 0; i < 200; i++) {
-      expect(r.weightedPick([{ id: "a", weight: 0 }, { id: "b", weight: 1 }]).id).toBe("b");
+      expect(r.weightedPick(lourds).id).toBe("b");
     }
     const vus = new Set<string>();
-    for (let i = 0; i < 200; i++) vus.add(r.weightedPick([{ id: "x" }, { id: "y" }]).id);
+    const egaux: { id: string; weight?: number }[] = [{ id: "x" }, { id: "y" }];
+    for (let i = 0; i < 200; i++) vus.add(r.weightedPick(egaux).id);
     expect(vus).toEqual(new Set(["x", "y"]));
   });
 
