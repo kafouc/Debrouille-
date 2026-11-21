@@ -6,6 +6,8 @@
   --border: #3a4680;
   --accent: #ff5c8a;
   --sun: #ffc93c;
+  /* texte mis en valeur : jaune sur fond sombre (Paris), bleu sur fond clair (Marseille) */
+  --highlight: #ffc93c;
   --on-accent: #141a38;
   --event-card: #fff6e8;
   --event-text: #1b2245;
@@ -19,6 +21,7 @@
   --border: #cfe7f3;
   --accent: #1679b5;
   --sun: #ffc93c;
+  --highlight: #0f5f8f;
   --on-accent: #ffffff;
 }
 

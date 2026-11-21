@@ -11,10 +11,10 @@ export function GaugesPanel({ gauges }: { gauges: Gauges }) {
   return (
     <section className="card" aria-label="Tes jauges" style={{ display: "flex", flexDirection: "column", gap: 12, padding: "14px 16px" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <span style={{ fontWeight: 800, fontSize: 15, color: "var(--sun)" }} className="money-label">
+        <span style={{ fontWeight: 800, fontSize: 15, color: "var(--highlight)" }} className="money-label">
           Argent
         </span>
-        <span style={{ fontFamily: "var(--font-titre)", fontWeight: 700, fontSize: 26, color: "var(--sun)" }} className="money-value">
+        <span style={{ fontFamily: "var(--font-titre)", fontWeight: 700, fontSize: 26, color: "var(--highlight)" }} className="money-value">
           {formatMoney(gauges.money)}
         </span>
       </div>

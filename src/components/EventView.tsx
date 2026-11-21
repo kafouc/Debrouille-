@@ -19,7 +19,7 @@ export function EventView({ card, onChoose }: EventViewProps) {
 
   return (
     <section style={{ display: "flex", flexDirection: "column", gap: 14 }} aria-label="Événement de l'année">
-      <span style={{ color: "var(--sun)", fontFamily: "var(--font-titre)", fontWeight: 600, fontSize: 16 }}>Événement de l&apos;année</span>
+      <span style={{ color: "var(--highlight)", fontFamily: "var(--font-titre)", fontWeight: 600, fontSize: 16 }}>Événement de l&apos;année</span>
       <div className="event-card">
         <h2 style={{ margin: 0, fontWeight: 700, fontSize: 24, lineHeight: 1.15 }}>{card.text}</h2>
         {card.detail ? <p style={{ margin: 0, fontSize: 15, fontWeight: 700, lineHeight: 1.4 }}>{card.detail}</p> : null}

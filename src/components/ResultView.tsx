@@ -38,7 +38,7 @@ export function ResultView({ result, onContinue }: ResultViewProps) {
 
   return (
     <section className="card" style={{ display: "flex", flexDirection: "column", gap: 12 }} aria-live="polite">
-      <h2 className="subtitle" style={{ color: "var(--sun)", fontSize: 19 }}>
+      <h2 className="subtitle" style={{ color: "var(--highlight)", fontSize: 19 }}>
         {result.choiceLabel}
       </h2>
       <p style={{ margin: 0, fontSize: 16, fontWeight: 700, lineHeight: 1.4 }}>{result.text}</p>

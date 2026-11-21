@@ -59,7 +59,7 @@ export function LifeCard({ state }: { state: LifeState }) {
             <span className="muted" style={{ fontSize: 14, fontWeight: 800, overflowWrap: "anywhere" }}>
               {state.character.name} · {state.character.district} · 18 → {state.age} ans
             </span>
-            <h1 style={{ margin: 0, fontWeight: 700, fontSize: 30, lineHeight: 1.05, color: "var(--sun)" }}>{title}</h1>
+            <h1 style={{ margin: 0, fontWeight: 700, fontSize: 30, lineHeight: 1.05, color: "var(--highlight)" }}>{title}</h1>
           </div>
           <p style={{ margin: 0, fontSize: 17, fontWeight: 700, lineHeight: 1.4 }}>« {sentence} »</p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 8 }}>
