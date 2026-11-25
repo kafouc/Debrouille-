@@ -1,6 +1,7 @@
 import { describe, expect, test } from "vitest";
 import { gradeFor, scoreFor } from "./grades";
 import { careerTitle, monthlySalary } from "./careers";
+import { lifeDefaults } from "./life";
 import type { Gauges, LifeState } from "./types";
 
 const g = (over: Partial<Gauges>): Gauges => ({
@@ -14,7 +15,7 @@ const g = (over: Partial<Gauges>): Gauges => ({
 
 function etat(over: Partial<LifeState> & { gauges: Gauges }): LifeState {
   return {
-    version: 1,
+    version: 2,
     seed: "t",
     rngState: 1,
     character: { name: "Inès", city: "paris", district: "Paris 18e", skin: "#C68A62" },
@@ -31,6 +32,7 @@ function etat(over: Partial<LifeState> & { gauges: Gauges }): LifeState {
     phase: "actions",
     deathCause: null,
     history: [],
+    ...lifeDefaults(),
     ...over,
   };
 }

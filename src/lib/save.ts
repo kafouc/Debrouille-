@@ -1,8 +1,9 @@
 import type { LifeState } from "@/engine";
+import { lifeDefaults } from "@/engine/life";
 
 export const SAVE_KEY = "debrouille.vie.v1";
 
-const PHASES = ["actions", "event", "result", "dead"];
+const PHASES = ["actions", "scene", "minigame", "event", "result", "summary", "dead"];
 const GAUGES = ["money", "health", "morale", "reputation", "family"];
 
 function defaultStorage(): Storage | undefined {
@@ -19,7 +20,7 @@ function isLifeState(v: unknown): v is LifeState {
   const g = s.gauges as Record<string, unknown> | undefined;
   const c = s.character as Record<string, unknown> | undefined;
   return (
-    s.version === 1 &&
+    s.version === 2 &&
     typeof s.seed === "string" &&
     typeof s.rngState === "number" &&
     typeof s.age === "number" &&
@@ -34,7 +35,11 @@ function isLifeState(v: unknown): v is LifeState {
     Array.isArray(s.flags) &&
     Array.isArray(s.seenEvents) &&
     Array.isArray(s.eventQueue) &&
-    Array.isArray(s.history)
+    Array.isArray(s.history) &&
+    Array.isArray(s.childrenAges) &&
+    Array.isArray(s.cinematics) &&
+    Array.isArray(s.ledger) &&
+    Array.isArray(s.yearActions)
   );
 }
 
@@ -50,7 +55,10 @@ export function loadLife(storage: Storage | undefined = defaultStorage()): LifeS
   try {
     const raw = storage?.getItem(SAVE_KEY);
     if (!raw) return null;
-    const parsed: unknown = JSON.parse(raw);
+    let parsed: unknown = JSON.parse(raw);
+    if (parsed && typeof parsed === "object" && (parsed as { version?: unknown }).version === 1) {
+      parsed = { ...lifeDefaults(), ...(parsed as object), version: 2 };
+    }
     return isLifeState(parsed) ? parsed : null;
   } catch {
     return null;

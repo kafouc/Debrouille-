@@ -1,3 +1,5 @@
+import type { ActionId } from "@/content/schema";
+
 export type City = "paris" | "marseille";
 export type FamilyStart = "modeste" | "moyenne" | "aisee";
 export type Grade = "Galérien" | "Débrouillard" | "Petit patron" | "Boss" | "Légende";
@@ -33,7 +35,38 @@ export type CareerId =
   | "immobilier"
   | "fonctionnaire";
 
-export type Phase = "actions" | "event" | "result" | "dead";
+export type Phase = "actions" | "scene" | "minigame" | "event" | "result" | "summary" | "dead";
+
+export type Relation = "celibataire" | "couple" | "marie";
+export type Season = "hiver" | "printemps" | "ete" | "automne";
+export type CinematicId =
+  | "depart"
+  | "premier-salaire"
+  | "coup-de-foudre"
+  | "mariage"
+  | "bebe"
+  | "promotion"
+  | "galere"
+  | "retraite"
+  | "vie-qui-defile";
+export type MinigameId = "peche";
+
+export interface ActionReplay {
+  id: ActionId;
+  text: string;
+  effects: Effects;
+}
+
+export interface LedgerLine {
+  label: string;
+  amount: number;
+}
+
+export interface YearSummary {
+  age: number;
+  lines: LedgerLine[];
+  total: number;
+}
 
 export interface OutcomeResult {
   cardId: string;
@@ -43,7 +76,7 @@ export interface OutcomeResult {
 }
 
 export interface LifeState {
-  version: 1;
+  version: 2;
   seed: string;
   rngState: number;
   character: Character;
@@ -61,4 +94,17 @@ export interface LifeState {
   phase: Phase;
   deathCause: "sante" | "vieillesse" | null;
   history: { age: number; text: string }[];
+  relation: Relation;
+  childrenAges: number[];
+  retired: boolean;
+  pension: number;
+  season: Season | null;
+  yearActions: ActionReplay[];
+  ledger: LedgerLine[];
+  lastYear: YearSummary | null;
+  cinematics: CinematicId[];
+  milestones: { age: number; label: string }[];
+  minigame: MinigameId | null;
+  lastMinigameAge: number | null;
+  hadCrisis: boolean;
 }

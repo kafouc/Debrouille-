@@ -21,6 +21,17 @@ describe("newLife", () => {
     expect(a.gauges.money).toBe(attendu);
   });
 
+  test("une vie commence par la cinématique du départ et sans situation", () => {
+    const v = newLife(input, "c1");
+    expect(v.version).toBe(2);
+    expect(v.cinematics).toEqual(["depart"]);
+    expect(v.relation).toBe("celibataire");
+    expect(v.childrenAges).toEqual([]);
+    expect(v.retired).toBe(false);
+    expect(v.milestones).toEqual([{ age: 18, label: "18 ans" }]);
+    expect(v.minigame).toBeNull();
+  });
+
   test("les trois familles de départ existent", () => {
     const familles = new Set(Array.from({ length: 60 }, (_, i) => newLife(input, `f${i}`).familyStart));
     expect(familles).toEqual(new Set(["modeste", "moyenne", "aisee"]));

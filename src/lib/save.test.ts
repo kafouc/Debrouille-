@@ -66,6 +66,28 @@ describe("sauvegarde", () => {
     expect(() => saveLife(vie, st)).not.toThrow();
   });
 
+  test("une sauvegarde de la version 1 est migrée", () => {
+    const st = new MemoryStorage();
+    const v1 = {
+      version: 1, seed: "old", rngState: 42,
+      character: { name: "Léa", city: "paris", district: "Paris 11e", skin: "#C68A62" },
+      familyStart: "moyenne", age: 30,
+      gauges: { money: 5000, health: 70, morale: 50, reputation: 20, family: 60 },
+      career: "livreur", careerLevel: 1, formations: 0, flags: [], seenEvents: ["loyer-hausse"],
+      eventQueue: [], currentEventId: null, lastResult: null, phase: "actions", deathCause: null,
+      history: [],
+    };
+    st.setItem(SAVE_KEY, JSON.stringify(v1));
+    const vie2 = loadLife(st);
+    expect(vie2).not.toBeNull();
+    expect(vie2!.version).toBe(2);
+    expect(vie2!.relation).toBe("celibataire");
+    expect(vie2!.childrenAges).toEqual([]);
+    expect(vie2!.cinematics).toEqual([]);
+    expect(vie2!.age).toBe(30);
+    expect(vie2!.phase).toBe("actions");
+  });
+
   test("effacer", () => {
     const st = new MemoryStorage();
     saveLife(vie, st);

@@ -2,6 +2,29 @@ import { DISTRICTS } from "@/content/districts";
 import { Rng } from "./rng";
 import type { City, FamilyStart, LifeState } from "./types";
 
+/** Champs ajoutés par la version 2 (situation de vie, année en scène). */
+export function lifeDefaults(): Pick<
+  LifeState,
+  | "relation" | "childrenAges" | "retired" | "pension" | "season" | "yearActions" | "ledger"
+  | "lastYear" | "cinematics" | "milestones" | "minigame" | "lastMinigameAge" | "hadCrisis"
+> {
+  return {
+    relation: "celibataire",
+    childrenAges: [],
+    retired: false,
+    pension: 0,
+    season: null,
+    yearActions: [],
+    ledger: [],
+    lastYear: null,
+    cinematics: [],
+    milestones: [],
+    minigame: null,
+    lastMinigameAge: null,
+    hadCrisis: false,
+  };
+}
+
 export interface NewLifeInput {
   name: string;
   city: City;
@@ -25,7 +48,7 @@ export function newLife(input: NewLifeInput, seed: string): LifeState {
   const rng = new Rng(seed);
   const familyStart = rng.pick<FamilyStart>(["modeste", "moyenne", "aisee"]);
   return {
-    version: 1,
+    version: 2,
     seed,
     rngState: rng.getState(),
     character: { name: cleanName(input.name), city: input.city, district: input.district, skin: input.skin },
@@ -43,5 +66,8 @@ export function newLife(input: NewLifeInput, seed: string): LifeState {
     phase: "actions",
     deathCause: null,
     history: [],
+    ...lifeDefaults(),
+    cinematics: ["depart"],
+    milestones: [{ age: 18, label: "18 ans" }],
   };
 }
