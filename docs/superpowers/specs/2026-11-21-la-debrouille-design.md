@@ -140,6 +140,22 @@ Les événements et les mini-jeux peuvent dépendre de cette situation (ex. : «
 3. **Le bilan de fin d'année** : gâteau d'anniversaire avec le nouvel âge, puis le détail de l'argent de l'année (salaire, loyer ou crédit, vie courante, enfants, voiture, chômage ou retraite) et le total. Si la vie se termine, le bilan laisse place à la carte de vie.
 4. Respect de « réduire les animations » sur le téléphone : les scènes deviennent des images fixes.
 
+### 5.11 Les cinématiques des grands moments
+Les moments forts de la vie ont leur propre cinématique de 4 à 6 secondes, avec une phrase drôle, une vibration et un son court. On peut toujours toucher pour passer. Chacune se déclenche une seule fois par vie (sauf la montée de grade).
+
+| Cinématique | Quand | Ce qu'on voit |
+|---|---|---|
+| Le départ du nid | début de la vie, ou départ de chez les parents | Le perso part avec ses cartons, un carton tombe, sa mère pleure à la fenêtre (avec un tupperware). |
+| Le premier salaire | premier vrai job | Le salaire tombe sur le compte… puis le loyer, les courses et l'abonnement repartent aussitôt. |
+| Le coup de foudre | début d'une relation | Un regard au parc, des cœurs s'envolent, un pigeon atterrit entre les deux. |
+| Le mariage | mariage | Arche de fleurs, confettis ; tonton danse avant que la musique commence. |
+| Le bébé | naissance d'un enfant | Un berceau, des pleurs à 3 h du matin, le perso tient debout grâce au café. |
+| La crémaillère | achat d'un logement | Les clés, la porte qui s'ouvre, un meuble en kit qui s'effondre. |
+| La promotion / montée de grade | montée de grade ou de carrière | Le perso sur un podium sous un projecteur, avec un trophée et des étincelles. |
+| La galère | chômage, faillite, grosse dette | Un nuage de pluie qui suit le perso partout ; il sort un parapluie… troué. |
+| La retraite | départ à la retraite | Le perso jette son réveil, s'installe dans un hamac au coucher du soleil. |
+| La vie qui défile | fin de vie, juste avant la carte de vie | Des photos de la vie du perso glissent à l'écran (18 ans, premier job, mariage…), construites avec ses vrais moments marquants. |
+
 ## 6. Les mini-jeux
 
 Principe commun : **20 à 30 secondes**, une seule main, liés à une action, un métier, un lieu ou une situation de vie, **le score change le résultat** (ex. : plus de livraisons = plus d'argent), **toujours facultatifs** (« passer » donne un résultat moyen). Chaque mini-jeu se termine par un **résultat drôle** (ex. : « Tu as pêché une trottinette »). Fréquence : au plus un mini-jeu par année de vie, en évitant de reproposer le même deux années de suite. Chaque mini-jeu a **3 niveaux de difficulté** selon l'âge ou le niveau de carrière.
@@ -264,7 +280,7 @@ Un programme simule **des milliers de vies automatiques** (joueur prudent, risqu
 
 **Calendrier indicatif**
 1. ✅ Fait : le moteur du jeu, 31 cartes, les écrans, la sauvegarde, la mise en ligne.
-2. Les cas de la vie, ton année en scène (scènes d'actions, saisons, bilan), ~220 cartes, ~100 fins, l'équilibrage : environ 2 semaines.
+2. Les cas de la vie, ton année en scène (scènes d'actions, saisons, bilan), les cinématiques des grands moments, ~220 cartes, ~100 fins, l'équilibrage : environ 2 semaines.
 3. La base des mini-jeux et la vague 1 (8 mini-jeux) : environ 1 semaine et demie.
 4. L'album des fins, l'héritage, le défi du jour, le défi entre potes, le classement, la carte de vie partageable : environ 1 semaine et demie.
 5. Tests avec 20 à 30 joueurs par ville, corrections, puis lancement (vidéos TikTok, partages, petits créateurs).
@@ -302,3 +318,4 @@ Un programme simule **des milliers de vies automatiques** (joueur prudent, risqu
 10. Les 10 mini-jeux en plus des 22 demandés (permis, soldes, foot à 5, speed-dating, bouquet de la mariée, déménagement, photo de famille, devoirs des enfants, plage bondée, course sous la pluie, file d'attente, potager… pour arriver à 32) et leur répartition en vagues.
 11. Les chiffres des cas de la vie (coût d'un enfant, chômage, retraite, voiture) : valeurs de départ, réglées par l'équilibrage.
 12. Objectif de répartition des grades en jeu au hasard (25/35/25/12/3 %).
+13. La liste des 10 cinématiques (§5.11) et leurs déclencheurs.
