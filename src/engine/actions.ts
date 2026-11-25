@@ -41,7 +41,7 @@ function applyOne(state: LifeState, id: ActionId, rng: Rng) {
     case "formation":
       g({ money: -1500, morale: -1 });
       state.formations += 1;
-      note(state, "Tu t'es formé.");
+      note(state, "Formation suivie : ton CV prend du poids.");
       break;
     case "job": {
       if (state.career === "etudiant") {
@@ -71,7 +71,7 @@ function applyOne(state: LifeState, id: ActionId, rng: Rng) {
       break;
     case "sortir":
       g({ morale: 8, reputation: 3, money: -400 });
-      note(state, "Tu es sorti avec tes potes.");
+      note(state, "Soirée avec tes potes. Tu connais tout le quartier.");
       break;
     case "sport":
       g({ health: 6, morale: 3 });
@@ -90,7 +90,7 @@ function applyOne(state: LifeState, id: ActionId, rng: Rng) {
     }
     case "repos":
       g({ health: 4, morale: 4, money: -300 });
-      note(state, "Tu t'es reposé.");
+      note(state, "Repos bien mérité. Le canapé te remercie.");
       break;
     case "retraite":
       state.retired = true;

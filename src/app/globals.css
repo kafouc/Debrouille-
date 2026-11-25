@@ -374,31 +374,7 @@ input:focus-visible {
   background: #ff9db8;
 }
 
-.grade-up {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(10, 13, 32, 0.72);
-  z-index: 10;
-  padding: 24px;
-}
 
-.grade-up-card {
-  background: var(--sun);
-  color: #141a38;
-  border-radius: 28px;
-  padding: 28px 24px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  max-width: 340px;
-  position: relative;
-  overflow: hidden;
-  animation: pop 360ms ease-out;
-}
 
 .confetti {
   position: absolute;
@@ -444,4 +420,212 @@ input:focus-visible {
     animation: none;
     transition: none;
   }
+}
+
+/* ---------- l'année en scène ---------- */
+.scene-box {
+  position: relative;
+  height: 300px;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.scene-hero {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.scene-bounce {
+  animation: scene-bounce 0.5s ease-in-out infinite;
+}
+
+.scene-ride {
+  animation: scene-ride 2.4s linear infinite;
+}
+
+.scene-chip {
+  position: absolute;
+  padding: 6px 12px;
+  border-radius: 12px;
+  color: #141a38;
+  font-weight: 800;
+  font-size: 16px;
+  animation: scene-float 2.4s ease-out infinite;
+}
+
+.scene-chip.up {
+  background: #ffc93c;
+}
+
+.scene-chip.down {
+  background: #ff9db8;
+}
+
+.scene-label {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  background: #141a38;
+  color: #f6f1e9;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-family: var(--font-titre), sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.progress-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.progress-dots span {
+  flex-grow: 1;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--border);
+}
+
+.progress-dots span.on {
+  background: var(--sun);
+}
+
+.season-badge {
+  align-self: flex-start;
+  padding: 5px 12px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 13px;
+  color: #141a38;
+}
+
+.situation {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.ledger-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.flame {
+  animation: flame 0.6s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+/* ---------- cinématiques ---------- */
+.cinematic {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: #0e1330;
+  color: #f6f1e9;
+  display: flex;
+  justify-content: center;
+}
+
+.cinematic-inner {
+  width: 100%;
+  max-width: 480px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cinematic-stage {
+  position: relative;
+  height: min(380px, 52dvh);
+  border-radius: 26px;
+  overflow: hidden;
+}
+
+.cinematic-stage svg.stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.cin-walk { animation: cin-walk 4s ease-in-out infinite alternate; }
+.cin-sway { animation: cin-sway 0.6s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+.cin-drop { animation: cin-drop 2.4s ease-in infinite; transform-box: fill-box; transform-origin: center; }
+.cin-tear { animation: cin-tear 1.2s ease-in infinite; }
+.cin-heart { animation: cin-heart 2.6s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+.cin-heart.d2 { animation-delay: 0.8s; }
+.cin-heart.d3 { animation-delay: 1.6s; }
+.cin-pigeon { animation: cin-pigeon 2.5s ease-out infinite alternate; }
+.cin-confetti { animation: cin-confetti 2.2s linear infinite; transform-box: fill-box; transform-origin: center; }
+.cin-dance { animation: cin-dance 0.5s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+.cin-cry { animation: cin-cry 0.5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.cin-wobble { animation: cin-wobble 1.2s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+.cin-spark { animation: cin-spark 1s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.cin-spark.d2 { animation-delay: 0.33s; }
+.cin-spark.d3 { animation-delay: 0.66s; }
+.cin-clock { animation: cin-clock 2s ease-in infinite; transform-box: fill-box; transform-origin: center; }
+.cin-hammock { animation: cin-hammock 2.4s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 0; }
+.cin-photos { animation: cin-photos 9s linear infinite; }
+.cin-rain { animation: cin-rain 0.6s linear infinite; }
+.cin-coin-out { animation: cin-coin-out 2.4s ease-in infinite; }
+.cin-coin-out.d2 { animation-delay: 0.6s; }
+.cin-coin-out.d3 { animation-delay: 1.2s; }
+
+@keyframes scene-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes scene-ride { from { transform: translateX(-120px); } to { transform: translateX(120px); } }
+@keyframes scene-float { 0% { transform: translateY(10px); opacity: 0; } 15% { opacity: 1; } 100% { transform: translateY(-70px); opacity: 0; } }
+@keyframes flame { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(1.25); } }
+@keyframes cin-walk { from { transform: translateX(0); } to { transform: translateX(140px); } }
+@keyframes cin-sway { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+@keyframes cin-drop { 0%, 60% { transform: translate(0, 0) rotate(0); } 100% { transform: translate(-30px, 70px) rotate(-70deg); } }
+@keyframes cin-tear { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(26px); opacity: 0; } }
+@keyframes cin-heart { 0% { transform: translateY(0) scale(0.6); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(-110px) scale(1.2); opacity: 0; } }
+@keyframes cin-pigeon { 0% { transform: translate(-120px, -120px); } 60%, 100% { transform: translate(0, 0); } }
+@keyframes cin-confetti { from { transform: translateY(-40px) rotate(0); } to { transform: translateY(380px) rotate(600deg); } }
+@keyframes cin-dance { 0%, 100% { transform: translateY(0) rotate(-8deg); } 50% { transform: translateY(-14px) rotate(8deg); } }
+@keyframes cin-cry { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+@keyframes cin-wobble { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+@keyframes cin-spark { 0%, 100% { opacity: 0.2; transform: scale(0.6); } 50% { opacity: 1; transform: scale(1.2); } }
+@keyframes cin-clock { 0% { transform: translate(0, 0) rotate(0); } 100% { transform: translate(220px, -200px) rotate(720deg); } }
+@keyframes cin-hammock { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+@keyframes cin-photos { from { transform: translateX(0); } to { transform: translateX(-60%); } }
+@keyframes cin-rain { from { transform: translateY(-10px); } to { transform: translateY(40px); } }
+@keyframes cin-coin-out { 0% { transform: translate(0, 0); opacity: 1; } 100% { transform: translate(140px, -120px); opacity: 0; } }
+
+/* ---------- mini-jeux ---------- */
+.mg-stage {
+  position: relative;
+  height: min(380px, 50dvh);
+  border-radius: 24px;
+  overflow: hidden;
+  background: #8fd8f5;
+}
+
+.mg-bobber { animation: mg-float 1.4s ease-in-out infinite; }
+.mg-bobber.bite { animation: mg-dive 0.5s ease-out infinite alternate; }
+.mg-waves { animation: mg-waves 3s linear infinite; }
+.mg-pop { animation: pop 360ms ease-out; }
+
+@keyframes mg-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes mg-dive { 0% { transform: translateY(0); } 30% { transform: translateY(16px); } 100% { transform: translateY(18px); } }
+@keyframes mg-waves { from { transform: translateX(0); } to { transform: translateX(-60px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .scene-bounce, .scene-ride, .scene-chip, .flame,
+  .cin-walk, .cin-sway, .cin-drop, .cin-tear, .cin-heart, .cin-pigeon, .cin-confetti, .cin-dance, .cin-cry,
+  .cin-wobble, .cin-spark, .cin-clock, .cin-hammock, .cin-photos, .cin-rain, .cin-coin-out,
+  .mg-bobber, .mg-waves, .mg-pop {
+    animation: none;
+  }
+  .scene-chip { position: static; display: inline-block; margin: 4px; }
 }

@@ -36,6 +36,10 @@ for (const ville of ["Paris", "Marseille"] as const) {
     await page.getByRole("button", { name: /Faire du sport/ }).click();
     await page.getByRole("button", { name: /Voir la famille/ }).click();
     await page.getByRole("button", { name: "Vivre cette année" }).click();
+    await page.getByRole("button", { name: "Action suivante" }).click();
+    await page.getByRole("button", { name: "Continuer" }).click();
+    const passer = page.getByRole("button", { name: "Passer le mini-jeu" });
+    if (await passer.isVisible()) await passer.click();
     expect(await contraste(page.getByText("Événement de l'année")), "titre événement").toBeGreaterThanOrEqual(4.5);
     await page.getByTestId("choix").first().click();
     expect(await contraste(page.locator("section.card h2")), "titre résultat").toBeGreaterThanOrEqual(4.5);
