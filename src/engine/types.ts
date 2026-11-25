@@ -99,6 +99,8 @@ export interface LifeState {
   retired: boolean;
   pension: number;
   season: Season | null;
+  /** Saison de chaque événement en attente (même ordre que eventQueue). */
+  eventSeasons: Season[];
   yearActions: ActionReplay[];
   ledger: LedgerLine[];
   lastYear: YearSummary | null;

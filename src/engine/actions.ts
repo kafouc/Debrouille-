@@ -3,7 +3,7 @@ import type { ActionId } from "@/content/schema";
 import { applyEffects } from "./apply";
 import { BUSINESS_CAREERS, maxLevel, monthlySalary } from "./careers";
 import type { Rng } from "./rng";
-import type { CareerId, LifeState } from "./types";
+import type { CareerId, Effects, Gauges, LifeState } from "./types";
 
 export function availableActions(state: LifeState): ActionId[] {
   return ACTIONS.filter((a) => a.minMoney === undefined || state.gauges.money >= a.minMoney).map((a) => a.id);
@@ -95,7 +95,19 @@ export function applyActions(state: LifeState, ids: [ActionId, ActionId], rng: R
     throw new Error("ACTIONS_INVALIDES");
   }
   const next = structuredClone(state);
-  for (const id of ids) applyOne(next, id, rng);
+  next.yearActions = [];
+  next.ledger = [];
+  for (const id of ids) {
+    const before = { ...next.gauges };
+    applyOne(next, id, rng);
+    const effects: Effects = {};
+    for (const key of Object.keys(before) as (keyof Gauges)[]) {
+      const diff = next.gauges[key] - before[key];
+      if (diff !== 0) effects[key] = diff;
+    }
+    next.yearActions.push({ id, text: next.history.at(-1)?.text ?? "", effects });
+    if (effects.money) next.ledger.push({ label: ACTIONS.find((a) => a.id === id)!.label, amount: effects.money });
+  }
   next.rngState = rng.getState();
   return next;
 }

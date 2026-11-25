@@ -1,4 +1,4 @@
-import type { CareerId, City, Effects } from "@/engine/types";
+import type { CareerId, City, Effects, Season } from "@/engine/types";
 
 export interface Conditions {
   minAge?: number;
@@ -30,6 +30,8 @@ export interface EventCard {
   conditions?: Conditions;
   weight?: number;
   repeatable?: boolean;
+  /** Saison imposée (soldes en hiver, vacances en été…). Sinon tirée au hasard. */
+  season?: Season;
   choices: Choice[];
 }
 

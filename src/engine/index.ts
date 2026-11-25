@@ -1,6 +1,6 @@
 export { newLife, cleanName, type NewLifeInput } from "./life";
 export { availableActions } from "./actions";
-export { chooseActions, chooseOption, continueTurn, currentEvent } from "./turn";
+export { chooseActions, chooseOption, continueTurn, currentEvent, finishMinigame, SEASONS } from "./turn";
 export { eligibleEvents } from "./events";
 export { gradeFor, scoreFor, GRADES } from "./grades";
 export { careerTitle, monthlySalary, CAREERS } from "./careers";

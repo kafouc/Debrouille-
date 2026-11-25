@@ -5,7 +5,7 @@ import type { City, FamilyStart, LifeState } from "./types";
 /** Champs ajoutés par la version 2 (situation de vie, année en scène). */
 export function lifeDefaults(): Pick<
   LifeState,
-  | "relation" | "childrenAges" | "retired" | "pension" | "season" | "yearActions" | "ledger"
+  | "relation" | "childrenAges" | "retired" | "pension" | "season" | "eventSeasons" | "yearActions" | "ledger"
   | "lastYear" | "cinematics" | "milestones" | "minigame" | "lastMinigameAge" | "hadCrisis"
 > {
   return {
@@ -14,6 +14,7 @@ export function lifeDefaults(): Pick<
     retired: false,
     pension: 0,
     season: null,
+    eventSeasons: [],
     yearActions: [],
     ledger: [],
     lastYear: null,
