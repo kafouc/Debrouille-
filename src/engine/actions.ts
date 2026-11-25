@@ -5,8 +5,15 @@ import { BUSINESS_CAREERS, maxLevel, monthlySalary } from "./careers";
 import type { Rng } from "./rng";
 import type { CareerId, Effects, Gauges, LifeState } from "./types";
 
+const WORK_ACTIONS: ActionId[] = ["bosser", "job"];
+
 export function availableActions(state: LifeState): ActionId[] {
-  return ACTIONS.filter((a) => a.minMoney === undefined || state.gauges.money >= a.minMoney).map((a) => a.id);
+  return ACTIONS.filter((a) => {
+    if (a.minMoney !== undefined && state.gauges.money < a.minMoney) return false;
+    if (a.minAge !== undefined && state.age < a.minAge) return false;
+    if (state.retired && (a.id === "retraite" || WORK_ACTIONS.includes(a.id))) return false;
+    return true;
+  }).map((a) => a.id);
 }
 
 function note(state: LifeState, text: string) {
@@ -84,6 +91,14 @@ function applyOne(state: LifeState, id: ActionId, rng: Rng) {
     case "repos":
       g({ health: 4, morale: 4, money: -300 });
       note(state, "Tu t'es reposé.");
+      break;
+    case "retraite":
+      state.retired = true;
+      state.pension = Math.round(monthlySalary(state) / 2);
+      g({ morale: 10 });
+      state.cinematics.push("retraite");
+      state.milestones.push({ age: state.age, label: "La retraite" });
+      note(state, "Départ à la retraite.");
       break;
   }
 }

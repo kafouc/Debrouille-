@@ -14,6 +14,10 @@ function conditionsMet(state: LifeState, card: EventCard): boolean {
   if (c.forbidsFlags && c.forbidsFlags.some((f) => state.flags.includes(f))) return false;
   if (c.minMoney !== undefined && money < c.minMoney) return false;
   if (c.maxMoney !== undefined && money > c.maxMoney) return false;
+  if (c.relations && !c.relations.includes(state.relation)) return false;
+  if (c.minChildren !== undefined && state.childrenAges.length < c.minChildren) return false;
+  if (c.maxChildren !== undefined && state.childrenAges.length > c.maxChildren) return false;
+  if (c.childAge && !state.childrenAges.some((a) => a >= c.childAge![0] && a <= c.childAge![1])) return false;
   return true;
 }
 

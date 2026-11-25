@@ -10,4 +10,5 @@ export const ACTIONS: ActionDef[] = [
   { id: "famille", label: "Voir la famille", hint: "+ famille" },
   { id: "investir", label: "Investir", hint: "placer ses sous", minMoney: 1000 },
   { id: "repos", label: "Me reposer", hint: "+ santé · − argent" },
+  { id: "retraite", label: "Partir à la retraite", hint: "adieu le réveil", minAge: 62 },
 ];

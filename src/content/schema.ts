@@ -1,4 +1,4 @@
-import type { CareerId, City, Effects, Season } from "@/engine/types";
+import type { CareerId, City, Effects, Relation, Season } from "@/engine/types";
 
 export interface Conditions {
   minAge?: number;
@@ -9,13 +9,21 @@ export interface Conditions {
   forbidsFlags?: string[];
   minMoney?: number;
   maxMoney?: number;
+  relations?: Relation[];
+  minChildren?: number;
+  maxChildren?: number;
+  /** Au moins un enfant dont l'âge est dans l'intervalle [min, max]. */
+  childAge?: [number, number];
 }
+
+export type LifeChange = "couple" | "mariage" | "bebe" | "rupture";
 
 export interface Outcome {
   weight?: number;
   text: string;
   effects: Effects;
   setFlags?: string[];
+  life?: LifeChange;
 }
 
 export interface Choice {
@@ -44,11 +52,13 @@ export type ActionId =
   | "sport"
   | "famille"
   | "investir"
-  | "repos";
+  | "repos"
+  | "retraite";
 
 export interface ActionDef {
   id: ActionId;
   label: string;
   hint: string;
   minMoney?: number;
+  minAge?: number;
 }

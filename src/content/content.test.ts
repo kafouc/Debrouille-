@@ -79,8 +79,8 @@ describe("cartes événement", () => {
 });
 
 describe("actions et quartiers", () => {
-  test("les 9 actions dans l'ordre", () => {
-    expect(ACTIONS.map((a) => a.id)).toEqual(["bosser", "formation", "job", "business", "sortir", "sport", "famille", "investir", "repos"]);
+  test("les 10 actions dans l'ordre", () => {
+    expect(ACTIONS.map((a) => a.id)).toEqual(["bosser", "formation", "job", "business", "sortir", "sport", "famille", "investir", "repos", "retraite"]);
     expect(ACTIONS.find((a) => a.id === "business")?.minMoney).toBe(2000);
     expect(ACTIONS.find((a) => a.id === "investir")?.minMoney).toBe(1000);
   });

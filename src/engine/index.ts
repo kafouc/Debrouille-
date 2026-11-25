@@ -7,3 +7,4 @@ export { careerTitle, monthlySalary, CAREERS } from "./careers";
 export { formatMoney, formatAge } from "./format";
 export { buildEpitaph } from "./epitaph";
 export type * from "./types";
+export { ackCinematic, queueCinematics } from "./cinematics";
