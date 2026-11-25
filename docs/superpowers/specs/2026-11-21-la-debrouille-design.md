@@ -1,8 +1,10 @@
 # La Débrouille — fiche du jeu (design)
 
-*Version 2 — 21 novembre 2026 — statut : à valider*
+*Version 3 — 25 novembre 2026 — statut : à valider*
 
-*Changements depuis la version 1 : ajout du défi du jour, de l'album des fins, de l'héritage, du défi entre potes et de 6 mini-jeux ; règles d'humour ; plateformes ; calendrier passé de 3 à environ 5 semaines.*
+*Changements depuis la version 2 : les cas de la vie (couple, enfants, logement, voiture, santé, travail, retraite) ; « ton année en scène » (animation des actions, saisons, bilan de fin d'année) ; 32 mini-jeux au lieu de 6, sortis en 4 vagues de 8 ; objectif de difficulté chiffré ; calendrier revu. La version 1 du jeu (moteur, 31 cartes, écrans) est en ligne.*
+
+*Changements de la version 2 : défi du jour, album des fins, héritage, défi entre potes ; règles d'humour ; plateformes.*
 
 Maquette des écrans : https://claude.ai/artifact/VtY4SfTiFbxKZY2coTWsbN
 
@@ -25,13 +27,16 @@ Maquette des écrans : https://claude.ai/artifact/VtY4SfTiFbxKZY2coTWsbN
 - Une partie (une vie) dure **10 à 15 minutes** (voir §5.2), sauvegardée à tout moment.
 - Chaque vie se termine par une **carte de vie** partageable (image + lien) sur TikTok, Snapchat, Instagram et WhatsApp.
 - Des raisons de **revenir** : défi du jour, album des fins, héritage, défi entre potes, classement Paris contre Marseille de la semaine.
-- **6 mini-jeux** courts intégrés à la vie.
+- **Une vie qui change** : couple, enfants, logement, voiture, santé, travail, retraite (§5.9).
+- **Des actions qu'on voit** : chaque action est jouée en petite scène animée, l'année défile en saisons et se termine par un bilan (§5.10).
+- **32 mini-jeux** courts intégrés à la vie (§6), dont 8 au lancement et les autres en vagues.
+- Un jeu qui reste un **défi** (§10).
 - Mesurer : combien reviennent le lendemain, combien de parties par joueur, combien partagent.
 
 **Non-objectifs de la V1** (prévus plus tard)
 - Paiements et achats dans le jeu.
 - Comptes utilisateurs, connexion.
-- Saisons à thème (Noël, soldes, canicule…) et nouveaux mini-jeux : ajoutés après le lancement, au fil des semaines.
+- Les vagues 2 à 4 de mini-jeux : ajoutées après le lancement, une par semaine environ, pour donner des nouveautés.
 - Multijoueur en temps réel, interactions entre joueurs.
 - Autres villes (Lyon, Lille, Toulouse…).
 - Applications Android et iOS sur les stores (étapes 2 et 3, §9).
@@ -115,20 +120,83 @@ Chaque montée de grade est un moment de fête à l'écran (confettis, vibration
 - Boutons : partager (partage natif du téléphone), télécharger l'image, rejouer, **jouer mon enfant** (§7.3).
 - Le lien partagé ouvre une page avec la carte et un bouton « Joue ta vie ».
 
+### 5.9 Les cas de la vie
+Le personnage a une **situation** qui évolue au fil des événements et s'affiche en petites icônes sous son nom (ex. : « en couple · 2 enfants · propriétaire ») :
+
+| Domaine | États possibles | Comment ça change | Ce que ça coûte ou rapporte |
+|---|---|---|---|
+| Amour | célibataire · en couple · marié(e) · séparé(e) · veuf(ve) | rencontres (soirée, travail, appli, voisin), demande en mariage, disputes, rupture | moral, famille ; mariage = dépense ; séparation = argent et moral en baisse |
+| Enfants | aucun, puis chaque enfant avec son âge (bébé, enfant, ado, adulte) | naissance possible en couple entre 22 et 45 ans ; les enfants grandissent d'un an par tour | ~4 000 €/an par enfant mineur ; famille en hausse ; événements d'enfants selon l'âge |
+| Logement | chez les parents (option de départ) · locataire · coloc · propriétaire | déménagement, coloc, crédit pour acheter | loyer ou mensualité de crédit ; propriétaire : plus de loyer une fois le crédit fini |
+| Voiture | aucune · voiture | achat, panne, accident, revente | achat + ~1 800 €/an d'entretien ; débloque des événements et mini-jeux |
+| Santé | en forme · blessure · maladie | accidents, excès, âge ; soins | santé, argent, moral |
+| Travail | en poste · au chômage · en reconversion · à la retraite | licenciement, burn-out, reconversion (formation), retraite possible à partir de 62 ans | chômage : ~60 % du salaire pendant 2 ans ; retraite : ~50 % du dernier salaire |
+
+Les événements et les mini-jeux peuvent dépendre de cette situation (ex. : « la rando avec les enfants » seulement avec un enfant de 6 à 14 ans).
+
+### 5.10 Ton année en scène
+1. **Les actions sont jouées en scène** : après « Vivre cette année », chaque action s'anime 2 à 3 secondes avec le personnage dans son décor (il pédale, court, danse, dîne en famille, dort, ouvre son food truck…). Les effets s'envolent au-dessus de lui (« +6 santé », « −400 € ») et les jauges bougent en direct. On peut toucher l'écran pour accélérer.
+2. **L'année défile en saisons** : chaque événement est rattaché à une saison (hiver, printemps, été, automne), affichée en haut de la carte. Certaines cartes n'existent qu'à une saison (soldes en janvier, vacances en été, rentrée en septembre, Noël en hiver).
+3. **Le bilan de fin d'année** : gâteau d'anniversaire avec le nouvel âge, puis le détail de l'argent de l'année (salaire, loyer ou crédit, vie courante, enfants, voiture, chômage ou retraite) et le total. Si la vie se termine, le bilan laisse place à la carte de vie.
+4. Respect de « réduire les animations » sur le téléphone : les scènes deviennent des images fixes.
+
 ## 6. Les mini-jeux
 
-Principe commun : **20 à 30 secondes**, une seule main, liés à une action ou un métier, **le score change le résultat** (ex. : plus de livraisons = plus d'argent), **toujours facultatifs** (« passer » donne un résultat moyen). Fréquence : au plus un mini-jeu par année de vie, pour ne pas casser le rythme.
+Principe commun : **20 à 30 secondes**, une seule main, liés à une action, un métier, un lieu ou une situation de vie, **le score change le résultat** (ex. : plus de livraisons = plus d'argent), **toujours facultatifs** (« passer » donne un résultat moyen). Chaque mini-jeu se termine par un **résultat drôle** (ex. : « Tu as pêché une trottinette »). Fréquence : au plus un mini-jeu par année de vie, en évitant de reproposer le même deux années de suite. Chaque mini-jeu a **3 niveaux de difficulté** selon l'âge ou le niveau de carrière.
 
-| Mini-jeu | Déclencheur | Principe | Effet |
-|---|---|---|---|
-| **La livraison** | métier livreur, action « bosser plus » | À vélo, esquiver trottinettes, piétons et nids-de-poule | Argent, santé |
-| **Le rush de midi** | food truck, kebab, restauration | Préparer les commandes avant que les clients s'énervent | Argent, réputation |
-| **La pétanque** | Marseille, action « sortir » | Viser le cochonnet | Moral, réputation |
-| **Le métro à 8 h** | Paris, trajets / travail | Se glisser dans la rame avant la fermeture des portes | Moral, travail |
-| **L'entretien d'embauche** | action « chercher un job » | Choisir vite la bonne réponse parmi des réponses pièges et drôles | Obtenir (ou non) le job |
-| **Le marchandage** | brocante, loyer, achats, business | Arrêter une aiguille au bon moment pour négocier | Argent |
+Tous les mini-jeux reposent sur une **base commune** : écran d'intro (titre, consigne en une phrase, bouton « passer »), chrono, score, écran de résultat avec effets sur les jauges.
 
-Chaque mini-jeu a **3 niveaux de difficulté** qui augmentent avec le niveau de carrière ou l'âge.
+**32 mini-jeux, en 4 vagues de 8 :**
+
+**Vague 1 — au lancement**
+| Mini-jeu | Quand | Principe et côté drôle |
+|---|---|---|
+| La livraison | livreur, « bosser plus » | À vélo, esquiver trottinettes, piétons et nids-de-poule. |
+| Le rush de midi | food truck, kebab, restauration | Préparer les commandes avant que les clients s'énervent. |
+| La pétanque | Marseille, « sortir » | Viser le cochonnet ; perdre 13-0 = embrasser la Fanny. |
+| Le métro à 8 h | Paris, travail | Se glisser dans la rame avant la fermeture des portes. |
+| La pêche | « sortir », « se reposer » ; port ou calanques à Marseille, quais à Paris | Ferrer pile quand le bouchon plonge ; on peut remonter une chaussure, une trottinette ou le poisson « gros comme une voiture ». |
+| La mouette voleuse (Marseille) / le pigeon du parc (Paris) | pause déjeuner, plage, parc | Protéger son sandwich en tapant sur les oiseaux. |
+| L'entretien d'embauche | « chercher un job » | Choisir vite la bonne réponse parmi des réponses pièges. |
+| La caisse | vendeur, caisse | Rendre la monnaie juste, le plus vite possible. |
+
+**Vague 2 — le quotidien**
+| Mini-jeu | Quand | Principe et côté drôle |
+|---|---|---|
+| Le marchandage | brocante, loyer, achats | Arrêter une aiguille au bon moment pour négocier. |
+| Le tri du courrier | à partir de 20 ans | Glisser chaque lettre vers la bonne pile (CAF, impôts, pub, facture). |
+| Le barbecue de tonton | été, famille | Retourner les saucisses au bon moment ; tonton commente chaque erreur. |
+| La sieste au bureau | employé de bureau, fonctionnaire | Dormir quand le chef regarde ailleurs, se réveiller quand il se retourne. |
+| Les courses de dernière minute | n'importe quand | Remplir le caddie avec la liste avant la fermeture. |
+| Le permis de conduire | 18–30 ans, achat de voiture | Passer les vitesses et freiner au bon moment ; l'examinateur soupire. |
+| Les soldes | janvier ou juillet | Attraper les articles en promo avant les autres clients. |
+| Le foot à 5 | « sortir », « faire du sport » | Viser la lucarne au bon moment ; le gardien adverse est ton patron. |
+
+**Vague 3 — l'amour et les grandes étapes**
+| Mini-jeu | Quand | Principe et côté drôle |
+|---|---|---|
+| Le speed-dating | célibataire, 20–50 ans | Choisir la bonne réplique en 5 secondes. |
+| La fête foraine en couple | en couple | Chamboule-tout, pêche aux canards, tir : gagner la peluche géante… puis rentrer avec dans le métro. |
+| Le dîner chez les beaux-parents | en couple | Répondre aux questions pièges sans gaffer avant que la jauge de malaise explose. |
+| Le karaoké du mariage | mariage (le tien ou celui d'un proche) | Taper en rythme pour sauver la fête. |
+| Le bouquet de la mariée | mariage d'un proche, célibataire | Attraper le bouquet au vol sans bousculer mamie. |
+| Le déménagement | changement de logement | Faire rentrer tous les meubles dans la camionnette. |
+| Le meuble en kit | emménagement | Remettre les étapes de montage dans l'ordre avant la crise de nerfs. |
+| La photo de famille | fêtes de famille | Déclencher quand tout le monde sourit et que tonton a les yeux ouverts. |
+
+**Vague 4 — les enfants, la ville et la retraite**
+| Mini-jeu | Quand | Principe et côté drôle |
+|---|---|---|
+| Le bébé à 3 h du matin | enfant de 0 à 2 ans | Deviner ce qu'il veut (biberon, couche, câlin, chanson) avant que les voisins tapent au mur. |
+| La rando avec les enfants | enfant de 6 à 14 ans | Éviter flaques et ronces en répondant vite aux « J'ai faim ! », « On arrive quand ? », « Porte-moi ! ». |
+| Les devoirs des enfants | enfant de 8 à 16 ans | Résoudre l'exercice de maths… que tu ne sais plus faire. |
+| La place de parking | Marseille, avec une voiture | Un créneau au millimètre entre un scooter et une voiture en double file. |
+| La plage bondée | été | Trouver une place pour ta serviette avant que le sable brûle. |
+| La course sous la pluie | automne, Paris | Courir d'abri en abri sans être trempé. |
+| La file d'attente au guichet | démarches administratives | Garder sa place sans se faire doubler. |
+| Le potager de la retraite | retraité | Arroser et récolter au bon moment ; les limaces sont tes ennemies. |
+
+Les mini-jeux ne dépendant pas d'une situation de vie (vague 1, une partie de la vague 2) peuvent sortir avant les cas de la vie ; ceux des vagues 3 et 4 en ont besoin.
 
 ## 7. Faire revenir les joueurs
 
@@ -169,9 +237,13 @@ Pas de notifications répétées, pas de coffres-surprises payants, pas d'avanta
 
 ## 10. L'équilibrage
 
+Constat de la V1 en ligne : en jouant au hasard, 92 % des vies finissent Boss. Le jeu est trop facile, car l'argent s'accumule sans vraies dépenses ni crises. Les cas de la vie (§5.9) ajoutent les dépenses et les coups durs qui manquent.
+
+Objectif pour un joueur qui joue **au hasard** : environ 25 % Galérien, 35 % Débrouillard, 25 % Petit patron, 12 % Boss, 3 % Légende. Un joueur qui fait de bons choix doit nettement mieux s'en sortir.
+
 Un programme simule **des milliers de vies automatiques** (joueur prudent, risqué, au hasard ; mini-jeux réussis, ratés ou passés) pour vérifier :
 - qu'une vie dure bien 50 à 65 tours en moyenne ;
-- que chaque grade est atteignable, « Légende » étant rare (≈ 5 % des vies) ;
+- que la répartition des grades est proche de l'objectif ci-dessus ;
 - qu'aucun choix ne gagne à tous les coups ;
 - que peu de vies se terminent avant 30 ans ;
 - que les mini-jeux comptent sans tout décider (passer un mini-jeu ne doit pas ruiner une vie).
@@ -190,12 +262,13 @@ Un programme simule **des milliers de vies automatiques** (joueur prudent, risqu
 
 ## 12. Lancement et mesures
 
-**Calendrier indicatif (après validation de cette fiche)**
-1. Semaine 1 : le moteur du jeu (jauges, actions, cartes, carrières, grades, sauvegarde) et les écrans de la maquette.
-2. Semaine 2 : le contenu (cartes, fins), l'équilibrage, l'album des fins, l'héritage, le défi du jour et le défi entre potes.
-3. Semaine 3 : les mini-jeux livraison, rush de midi et pétanque.
-4. Semaine 4 : les mini-jeux métro, entretien d'embauche et marchandage ; la carte de vie partageable et le classement.
-5. Semaine 5 : tests avec 20 à 30 joueurs par ville, corrections, puis lancement (vidéos TikTok, partages, petits créateurs).
+**Calendrier indicatif**
+1. ✅ Fait : le moteur du jeu, 31 cartes, les écrans, la sauvegarde, la mise en ligne.
+2. Les cas de la vie, ton année en scène (scènes d'actions, saisons, bilan), ~220 cartes, ~100 fins, l'équilibrage : environ 2 semaines.
+3. La base des mini-jeux et la vague 1 (8 mini-jeux) : environ 1 semaine et demie.
+4. L'album des fins, l'héritage, le défi du jour, le défi entre potes, le classement, la carte de vie partageable : environ 1 semaine et demie.
+5. Tests avec 20 à 30 joueurs par ville, corrections, puis lancement (vidéos TikTok, partages, petits créateurs).
+6. Après le lancement : les vagues 2, 3 et 4 de mini-jeux, environ une par semaine.
 
 **Rôle du porteur du projet :** trouver les testeurs à Paris et à Marseille, valider l'humour, proposer des galères vécues, publier les premières vidéos.
 
@@ -226,3 +299,6 @@ Un programme simule **des milliers de vies automatiques** (joueur prudent, risqu
 7. Défi entre potes ajouté (il réutilise le défi du jour).
 8. Défi du jour : une seule tentative classée par jour.
 9. Seuil de décision : 20 % de retour le lendemain, 5 % de partage.
+10. Les 10 mini-jeux en plus des 22 demandés (permis, soldes, foot à 5, speed-dating, bouquet de la mariée, déménagement, photo de famille, devoirs des enfants, plage bondée, course sous la pluie, file d'attente, potager… pour arriver à 32) et leur répartition en vagues.
+11. Les chiffres des cas de la vie (coût d'un enfant, chômage, retraite, voiture) : valeurs de départ, réglées par l'équilibrage.
+12. Objectif de répartition des grades en jeu au hasard (25/35/25/12/3 %).
