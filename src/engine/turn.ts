@@ -7,6 +7,7 @@ import { Rng } from "./rng";
 import type { Effects, LifeState, Season } from "./types";
 import { addToLedger, endYear } from "./year";
 import { queueCinematics } from "./cinematics";
+import { clampMinigameEffects, pickMinigame } from "./minigames";
 import type { LifeChange } from "@/content/schema";
 
 const LIFE_MILESTONE: Record<Exclude<LifeChange, "rupture">, string> = {
@@ -69,6 +70,7 @@ function chooseActionsRaw(state: LifeState, ids: [ActionId, ActionId], cards: Ev
   drawn.sort((a, b) => SEASONS.indexOf(a.season) - SEASONS.indexOf(b.season));
   s.eventQueue = drawn.map((d) => d.id);
   s.eventSeasons = drawn.map((d) => d.season);
+  s.minigame = pickMinigame(state, ids, rng);
   s.phase = "scene";
   s.rngState = rng.getState();
   return s;
@@ -115,11 +117,18 @@ function continueTurnRaw(state: LifeState): LifeState {
   }
 }
 
-/** Termine le mini-jeu (null = passé) et reprend le fil de l'année. Complété à la tâche 4. */
+/** Termine le mini-jeu (null = passé) et reprend le fil de l'année. */
 function finishMinigameRaw(state: LifeState, result: { effects: Effects; text: string } | null): LifeState {
   if (state.phase !== "minigame") return state;
-  void result;
-  return nextStep({ ...structuredClone(state), minigame: null }, Rng.fromState(state.rngState));
+  const s = structuredClone(state);
+  const effects = result ? clampMinigameEffects(result.effects) : { morale: 2 };
+  const before = s.gauges.money;
+  s.gauges = applyEffects(s.gauges, effects);
+  addToLedger(s, "Mini-jeu", s.gauges.money - before);
+  if (result) s.history.push({ age: s.age, text: result.text });
+  s.minigame = null;
+  s.lastMinigameAge = s.age;
+  return nextStep(s, Rng.fromState(state.rngState));
 }
 
 function withCinematics<A extends unknown[]>(fn: (state: LifeState, ...args: A) => LifeState) {
